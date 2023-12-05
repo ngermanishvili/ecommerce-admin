@@ -34,7 +34,23 @@ export async function PATCH(
         const { userId } = auth();
         const body = await req.json();
 
-        const { label, imageUrl } = body;
+        const { label, imageUrl, address, name, lastName, phoneNumber } = body;
+
+        if (!name) {
+            return new NextResponse("Name is required", { status: 400 })
+        }
+
+        if (!lastName) {
+            return new NextResponse("Last name is required", { status: 400 })
+        }
+
+        if (!phoneNumber) {
+            return new NextResponse("Phone number is required", { status: 400 })
+        }
+
+        if (!address) {
+            return new NextResponse("Address is required", { status: 400 })
+        }
 
         if (!userId) {
             return new NextResponse("Unauthenticated", { status: 401 })
@@ -56,6 +72,7 @@ export async function PATCH(
             where: {
                 id: params.storeId,
                 userId
+
             }
         })
 
@@ -69,7 +86,11 @@ export async function PATCH(
             },
             data: {
                 label,
-                imageUrl
+                imageUrl,
+                address,
+                name,
+                lastName,
+                phoneNumber,
             }
         });
 

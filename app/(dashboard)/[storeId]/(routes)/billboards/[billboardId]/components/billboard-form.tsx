@@ -10,7 +10,6 @@ import { useForm } from "react-hook-form";
 import { useParams, useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-
 import {
     Form,
     FormControl,
@@ -28,7 +27,11 @@ import ImageUpload from '@/components/ui/image-upload';
 
 const formSchema = z.object({
     label: z.string().min(1),
-    imageUrl: z.string().min(1)
+    imageUrl: z.string().min(1),
+    address: z.string().min(1),
+    phoneNumber: z.string().min(1),
+    name: z.string().min(1),
+    lastName: z.string().min(1),
 })
 
 // This BillBoardFormValues is for the formik form values type definition.
@@ -39,9 +42,11 @@ interface BillBoardFormProps {
 }
 
 
+
 export const BillBoardForm: React.FC<BillBoardFormProps> = ({
     initialData
 }) => {
+
     const router = useRouter();
     const params = useParams();
 
@@ -58,7 +63,10 @@ export const BillBoardForm: React.FC<BillBoardFormProps> = ({
         defaultValues: initialData || {
             label: '',
             imageUrl: '',
-
+            address: '',
+            phoneNumber: '',
+            name: '',
+            lastName: ''
         }
     })
 
@@ -166,12 +174,80 @@ export const BillBoardForm: React.FC<BillBoardFormProps> = ({
                             )}
                         />
                     </div>
-                    <Button disabled={loading} className='ml-auto' type='submit'>
+                    <div className='grid grid-cols-3 gap-8'>
+                        <FormField
+                            control={form.control}
+                            name='address'
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>
+                                        Adress
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input disabled={loading} placeholder='Billboard address' {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name='phoneNumber'
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>
+                                        Phone Number
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input disabled={loading} placeholder='Billboard Phone Number' {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                    </div>
+
+                    <div className='grid grid-cols-3 gap-8'>
+                        <FormField
+                            control={form.control}
+                            name='name'
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>
+                                        name
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input disabled={loading} placeholder='Name' {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name='lastName'
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>
+                                        LastName
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input disabled={loading} placeholder='LastName' {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                    </div>
+                    <Button disabled={loading} className='ml-auto' type='submit'
+                    >
                         {action}
                     </Button>
 
                 </form>
-            </Form>
+            </Form >
 
         </>
     )

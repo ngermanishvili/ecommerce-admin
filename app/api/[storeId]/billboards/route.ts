@@ -10,7 +10,24 @@ export async function POST(
         const { userId } = auth();
         const body = await req.json()
 
-        const { label, imageUrl } = body;
+        const { label, imageUrl, address, name, lastName, phoneNumber } = body;
+
+
+        if (!name) {
+            return new NextResponse("Name is required", { status: 400 })
+        }
+
+        if (!lastName) {
+            return new NextResponse("Last name is required", { status: 400 })
+        }
+
+        if (!phoneNumber) {
+            return new NextResponse("Phone number is required", { status: 400 })
+        }
+
+        if (!address) {
+            return new NextResponse("Address is required", { status: 400 })
+        }
 
         if (!userId) {
             return new NextResponse("Unautheticated", { status: 401 })
@@ -35,15 +52,15 @@ export async function POST(
             }
         })
 
-        if (!storeByUserId) {
-            return new NextResponse("Unaothorized", { status: 403 })
-        }
-
         const billboard = await prismadb.billboard.create({
             data: {
+                address,
                 label,
                 imageUrl,
-                storeId: params.storeId
+                storeId: params.storeId,
+                name: name,
+                lastName,
+                phoneNumber,
             }
         });
 

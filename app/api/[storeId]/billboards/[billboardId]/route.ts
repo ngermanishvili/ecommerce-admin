@@ -82,13 +82,13 @@ export async function PATCH(
     }
 }
 
+
 export async function DELETE(
     req: Request,
     { params }: { params: { storeId: string, billboardId: string } }
 ) {
     try {
         const { userId } = auth();
-
 
         if (!userId) {
             return new NextResponse("Unauthenticated", { status: 401 })

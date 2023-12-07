@@ -25,6 +25,7 @@ import { Separator } from "@/components/ui/separator";
 import { Input } from '@/components/ui/input';
 import { AlertModal } from '@/components/modals/alert-modal';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import QRCodeGenerator from '@/components/ui/qr-code';
 
 const formSchema = z.object({
     name: z.string().min(1),
@@ -190,10 +191,9 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
                     <Button disabled={loading} className='ml-auto' type='submit'>
                         {action}
                     </Button>
-
                 </form>
             </Form>
-
+            <QRCodeGenerator text={Array.isArray(params.categoryId) ? params.categoryId[0].toString() : params.categoryId.toString()} />
         </>
     )
 }

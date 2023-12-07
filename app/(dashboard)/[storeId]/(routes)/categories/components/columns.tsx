@@ -31,6 +31,10 @@ export const columns: ColumnDef<CategoryColumn>[] = [
         header: "id",
     },
     {
+        accessorKey: "markedByCourier",
+        header: "markedByCourier",
+    },
+    {
         id: 'actions',
         cell: ({ row }) => <CellAction data={row.original} />
     }

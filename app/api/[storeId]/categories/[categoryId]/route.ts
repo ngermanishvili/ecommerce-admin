@@ -34,7 +34,11 @@ export async function PATCH(
         const { userId } = auth();
         const body = await req.json();
 
-        const { name, billboardId } = body;
+        const { name, billboardId, markedByCourier } = body;
+
+        if (markedByCourier) {
+            return new NextResponse("Unautheticated", { status: 401 })
+        }
 
         if (!userId) {
             return new NextResponse("Unauthenticated", { status: 401 })
@@ -68,6 +72,7 @@ export async function PATCH(
                 id: params.categoryId,
             },
             data: {
+                markedByCourier,
                 name,
                 billboardId
             }

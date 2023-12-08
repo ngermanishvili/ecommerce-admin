@@ -56,10 +56,10 @@ export async function PATCH(
             return new NextResponse("category ID is required", { status: 400 })
         }
 
-        const storeByUserId = await prismadb.store.findFirst({
+        const storeByUserId = await prismadb.billboard.findFirst({
             where: {
                 id: params.storeId,
-                userId
+
             }
         })
 
@@ -105,10 +105,10 @@ export async function DELETE(
 
 
 
-        const storeByUserId = await prismadb.store.findFirst({
+        const storeByUserId = await prismadb.billboard.findFirst({
             where: {
                 id: params.storeId,
-                userId
+
             }
         })
 

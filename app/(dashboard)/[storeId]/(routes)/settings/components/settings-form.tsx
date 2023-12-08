@@ -4,7 +4,6 @@ import * as z from 'zod';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
-import { Store } from "@prisma/client"
 import { Trash } from "lucide-react";
 import { set, useForm } from "react-hook-form";
 import { useParams, useRouter } from 'next/navigation';
@@ -29,7 +28,6 @@ import { useOrigin } from '@/hooks/use-origin';
 
 
 interface SettingsFormProps {
-	initialData: Store;
 }
 
 const formSchema = z.object({
@@ -40,7 +38,6 @@ type SettingsFormValues = z.infer<typeof formSchema>
 
 
 export const SettingsForm: React.FC<SettingsFormProps> = ({
-	initialData
 }) => {
 	const router = useRouter();
 	const params = useParams();
@@ -50,7 +47,6 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
 
 	const form = useForm<SettingsFormValues>({
 		resolver: zodResolver(formSchema),
-		defaultValues: initialData
 	})
 
 	const onSubmit = async (data: SettingsFormValues) => {

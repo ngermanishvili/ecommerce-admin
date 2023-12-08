@@ -32,16 +32,7 @@ export async function POST(
             return new NextResponse("Store ID is required", { status: 400 })
         }
 
-        const storeByUserId = await prismadb.store.findFirst({
-            where: {
-                id: params.storeId,
-                userId
-            }
-        })
 
-        if (!storeByUserId) {
-            return new NextResponse("Unaothorized", { status: 403 })
-        }
 
         const categories = await prismadb.category.create({
             data: {

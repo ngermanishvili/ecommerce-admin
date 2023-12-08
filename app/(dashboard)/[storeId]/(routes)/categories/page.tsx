@@ -14,7 +14,6 @@ const CategoriesPage = async ({
 
 
 }) => {
-
     const categories = await prismadb.category.findMany({
         where: {
             storeId: params.storeId
@@ -39,7 +38,7 @@ const CategoriesPage = async ({
     return (
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
-                <CategoryClient data={formattedCategories} />
+                <CategoryClient variant='admin' data={formattedCategories} />
             </div>
         </div>
     )

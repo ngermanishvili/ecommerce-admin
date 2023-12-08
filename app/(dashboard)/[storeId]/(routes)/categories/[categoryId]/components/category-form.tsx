@@ -38,12 +38,14 @@ type CategoryFormValues = z.infer<typeof formSchema>
 interface CategoryFormProps {
     initialData: Category | null;
     billboards: Billboard[];
+
 }
 
 
 export const CategoryForm: React.FC<CategoryFormProps> = ({
     initialData,
-    billboards
+    billboards,
+
 }) => {
     const router = useRouter();
     const params = useParams();
@@ -193,7 +195,9 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
                     </Button>
                 </form>
             </Form>
-            <QRCodeGenerator text={Array.isArray(params.categoryId) ? params.categoryId[0].toString() : params.categoryId.toString()} />
+            <>
+                <QRCodeGenerator text={`${window.location.origin}/${params.storeId}/categories/${params.categoryId}`} />
+            </>
         </>
     )
 }

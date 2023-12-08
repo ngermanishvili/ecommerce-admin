@@ -13,14 +13,15 @@ import { ApiList } from "@/components/ui/api-list"
 
 interface CategoryClientProps {
     data: CategoryColumn[];
-
+    variant: "public" | "admin"
 }
 
 export const CategoryClient: React.FC<CategoryClientProps> = ({
-    data
+    data,
 }) => {
     const router = useRouter();
     const params = useParams();
+
 
     return (
         <>
@@ -39,8 +40,6 @@ export const CategoryClient: React.FC<CategoryClientProps> = ({
             <Heading title="API" description="api calls for categories" />
             <Separator />
             <ApiList entityName="categories" entityIdName="categoryId" />
-
-
         </>
 
     )

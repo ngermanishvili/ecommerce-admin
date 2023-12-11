@@ -40,7 +40,6 @@ export const StoreModal = () => {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             window.location.assign(`/admindashboard`)
-
         } catch (error) {
             toast.error("Something Went Wrong")
         } finally {

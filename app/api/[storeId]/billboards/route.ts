@@ -28,10 +28,6 @@ export async function POST(
             return new NextResponse("Store ID is required", { status: 400 })
         }
 
-
-
-
-
         const billboard = await prismadb.billboard.create({
             data: {
                 label,

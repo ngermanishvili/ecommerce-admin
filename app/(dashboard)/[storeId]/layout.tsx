@@ -19,8 +19,6 @@ export default async function DashboardLayout({
         redirect('/sign-in')
     }
 
-
-
     return (
         <>
             <div>

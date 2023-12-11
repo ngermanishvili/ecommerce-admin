@@ -53,12 +53,6 @@ export async function PATCH(
             return new NextResponse("Billboard ID is required", { status: 400 })
         }
 
-        const storeByUserId = await prismadb.billboard.findFirst({
-            where: {
-                id: params.storeId,
-
-            }
-        })
 
 
         const billboard = await prismadb.billboard.updateMany({

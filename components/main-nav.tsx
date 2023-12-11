@@ -33,9 +33,9 @@ export function MainNav({
             active: pathname === `/${params.storeId}/categories`
         },
         {
-            href: `/${params.storeId}/createshipment`,
+            href: `/${params.storeId}/shipments`,
             label: 'Create Shipment',
-            active: pathname === `/${params.storeId}/createshipment`
+            active: pathname === `/${params.storeId}/shipments`
         },
     ]
 

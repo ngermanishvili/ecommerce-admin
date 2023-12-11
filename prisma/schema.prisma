@@ -35,14 +35,15 @@ model Billboard {
 }
 
 model Category {
-  id          String    @id @default(uuid())
-  storeId     String // Foreign Key to Store
-  store       Store     @relation("StoreToCategory", fields: [storeId], references: [id])
-  billboardId String // Foreign Key to Billboard
-  billboard   Billboard @relation(fields: [billboardId], references: [id])
-  name        String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id              String    @id @default(uuid())
+  storeId         String // Foreign Key to Store
+  store           Store     @relation("StoreToCategory", fields: [storeId], references: [id])
+  billboardId     String // Foreign Key to Billboard
+  billboard       Billboard @relation(fields: [billboardId], references: [id])
+  name            String
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  markedByCourier Boolean   @default(false) // New field for the courier to mark true or false
 
   @@index([storeId])
   @@index([billboardId])

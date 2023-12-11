@@ -31,7 +31,7 @@ export default function RootLayout({
                 chatbox.className = 'fb-customerchat';
                 document.body.appendChild(chatbox);
 
-                chatbox.setAttribute('page_id', 'YOUR_PAGE_ID'); // Replace with your Facebook Page ID
+                chatbox.setAttribute('page_id', '115850238226188'); // Replace with your Facebook Page ID
                 chatbox.setAttribute('attribution', 'biz_inbox');
                 
                 window.fbAsyncInit = function() {
@@ -62,3 +62,5 @@ export default function RootLayout({
     </ClerkProvider>
   )
 }
+
+

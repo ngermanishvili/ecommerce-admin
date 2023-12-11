@@ -5,7 +5,6 @@ import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
 import { ModalProvider } from '@/providers/modal-provider'
 import { ToasterProvider } from '@/providers/toast-provider'
-import Facebook from '@/components/facebook-script'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,7 +26,6 @@ export default function RootLayout({
           <ModalProvider />
           {children}
         </body>
-        <Facebook />
       </html>
     </ClerkProvider>
 

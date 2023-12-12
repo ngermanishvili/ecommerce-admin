@@ -8,6 +8,11 @@ export type ShipmentColumn = {
     id: string
     name: string
     lastName: string
+    phoneNumber: string
+    address: string
+    city: string
+    price: string
+    brittle: string
     createdAt: string
 }
 
@@ -29,8 +34,8 @@ export const columns: ColumnDef<ShipmentColumn>[] = [
         header: "მისამართი",
     },
     {
-        accessorKey: "phoneNumber",
-        header: "ტელეფონის ნომერი",
+        accessorKey: "price",
+        header: "ფასი",
     },
     {
         accessorKey: "city",

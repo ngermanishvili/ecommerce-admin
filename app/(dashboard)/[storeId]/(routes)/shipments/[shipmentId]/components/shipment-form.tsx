@@ -1,5 +1,4 @@
 "use client"
-
 import * as z from 'zod';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -34,6 +33,13 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 
 const formSchema = z.object({
     name: z.string().min(1),
@@ -51,8 +57,6 @@ type ShipmentFormValues = z.infer<typeof formSchema>
 interface ShipmentFormProps {
     initialData: Shipment | null;
 }
-
-
 
 export const ShipmentForm: React.FC<ShipmentFormProps> = ({
     initialData
@@ -151,7 +155,6 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
             {/* // formik form */}
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8 w-full'>
-
                     <div className='grid grid-cols-3 gap-8'>
                         <FormField
                             control={form.control}
@@ -162,7 +165,7 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
                                         სახელი
                                     </FormLabel>
                                     <FormControl>
-                                        <Input disabled={loading} placeholder='Name' {...field} />
+                                        <Input disabled={loading} placeholder='სახელი' {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -175,10 +178,10 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>
-                                        Last Name
+                                        გვარი
                                     </FormLabel>
                                     <FormControl>
-                                        <Input disabled={loading} placeholder='Last Name ' {...field} />
+                                        <Input disabled={loading} placeholder='გვარი ' {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -193,7 +196,7 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
                                         ფასი
                                     </FormLabel>
                                     <FormControl>
-                                        <Input disabled={loading} placeholder='Price ' {...field} />
+                                        <Input disabled={loading} placeholder='ფასი' {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -205,10 +208,10 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>
-                                        გვარი
+                                        ტელეფონის ნომერი
                                     </FormLabel>
                                     <FormControl>
-                                        <Input disabled={loading} placeholder='Last Name ' {...field} />
+                                        <Input disabled={loading} placeholder='ტელეფონის ნომერი ' {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -223,7 +226,7 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
                                         მისამართი
                                     </FormLabel>
                                     <FormControl>
-                                        <Input disabled={loading} placeholder='address  ' {...field} />
+                                        <Input disabled={loading} placeholder='მისამართი  ' {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -256,12 +259,10 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
                                         <Input disabled={loading} placeholder='..' {...field} />
                                     </FormControl>
                                     <FormMessage />
+
                                 </FormItem>
                             )}
                         />
-
-
-
 
                     </div>
                     <Button disabled={loading} className='ml-auto' type='submit'>
@@ -276,7 +277,6 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
                             <QRCodeGenerator text={`${window.location.origin}/${params.storeId}/categories/${params.shipmentId}`} />
                         </CardContent>
                     </Card>
-
                 </form>
             </Form>
 

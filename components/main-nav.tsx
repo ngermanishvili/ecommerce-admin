@@ -16,25 +16,31 @@ export function MainNav({
     const routes = [
         {
             href: `/${params.storeId}`,
-            label: 'Overview ',
+            label: 'მთავარი ',
             active: pathname === `/${params.storeId}`
         },
 
         {
             href: `/${params.storeId}/billboards`,
-            label: 'Billboards',
+            label: 'ბილბორდი',
             active: pathname === `/${params.storeId}/billboards`
         },
 
 
         {
             href: `/${params.storeId}/categories`,
-            label: 'Categories',
+            label: 'კატეგორია',
             active: pathname === `/${params.storeId}/categories`
         },
         {
+            href: `/${params.storeId}/shipments/new`,
+            label: 'შეკვეთების განთავსება',
+            active: pathname === `/${params.storeId}/shipments/new`
+        },
+
+        {
             href: `/${params.storeId}/shipments`,
-            label: 'Create Shipment',
+            label: 'შეკვეთების ისტორია  ',
             active: pathname === `/${params.storeId}/shipments`
         },
     ]

@@ -29,7 +29,7 @@ export const columns: ColumnDef<ShipmentColumn>[] = [
         header: "მისამართი",
     },
     {
-        accessorKey: "address",
+        accessorKey: "phoneNumber",
         header: "ტელეფონის ნომერი",
     },
     {
@@ -43,6 +43,10 @@ export const columns: ColumnDef<ShipmentColumn>[] = [
     {
         accessorKey: "createdAt",
         header: "დამატების თარიღი",
+    },
+    {
+        accessorKey: "id",
+        header: "id",
     },
     {
         id: 'actions',

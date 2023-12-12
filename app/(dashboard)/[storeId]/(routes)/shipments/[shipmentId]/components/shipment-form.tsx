@@ -91,21 +91,24 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
         }
     }
 
+
     const onDelete = async () => {
         try {
             setLoading(true)
             await axios.delete(`/api/${params.storeId}/shipments/${params.shipmentId}}`)
+
             router.refresh();
             router.push(`/${params.storeId}/shipments`);
-            toast.success('Shipment deleted.')
+            toast.success('Category deleted.')
 
         } catch (error) {
-            toast.error('Make sure you removed all products using this shipment first.')
+            toast.error('Make sure you removed all products using this category first.')
         } finally {
             setLoading(false)
             setOpen(false)
         }
     }
+
 
     return (
         <>
@@ -156,6 +159,7 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
                             )}
                         />
                         <FormField
+                            key={initialData?.id}
                             control={form.control}
                             name='lastName'
                             render={({ field }) => (

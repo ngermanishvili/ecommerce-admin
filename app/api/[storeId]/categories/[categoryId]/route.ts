@@ -105,9 +105,9 @@ export async function DELETE(
 
 
 
-        const storeByUserId = await prismadb.billboard.findFirst({
+        const storeByUserId = await prismadb.category.findFirst({
             where: {
-                id: params.storeId,
+                id: params.categoryId,
 
             }
         })

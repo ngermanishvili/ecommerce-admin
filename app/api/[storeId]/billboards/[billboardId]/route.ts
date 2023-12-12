@@ -91,11 +91,6 @@ export async function DELETE(
         }
 
 
-
-
-
-
-
         const billboard = await prismadb.billboard.deleteMany({
             where: {
                 id: params.billboardId,

@@ -32,6 +32,7 @@ export async function PATCH(
 ) {
     try {
         const { userId } = auth();
+
         const body = await req.json();
 
         const { label, imageUrl } = body;
@@ -52,16 +53,7 @@ export async function PATCH(
             return new NextResponse("Billboard ID is required", { status: 400 })
         }
 
-        const storeByUserId = await prismadb.store.findFirst({
-            where: {
-                id: params.storeId,
-                userId
-            }
-        })
 
-        if (!storeByUserId) {
-            return new NextResponse("Unaothorized", { status: 403 })
-        }
 
         const billboard = await prismadb.billboard.updateMany({
             where: {
@@ -98,18 +90,6 @@ export async function DELETE(
             return new NextResponse("billboardId ID is required", { status: 400 })
         }
 
-
-
-        const storeByUserId = await prismadb.store.findFirst({
-            where: {
-                id: params.storeId,
-                userId
-            }
-        })
-
-        if (!storeByUserId) {
-            return new NextResponse("Unaothorized", { status: 403 })
-        }
 
         const billboard = await prismadb.billboard.deleteMany({
             where: {

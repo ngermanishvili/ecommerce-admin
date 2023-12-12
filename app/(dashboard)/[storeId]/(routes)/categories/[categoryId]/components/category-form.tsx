@@ -3,12 +3,12 @@
 import * as z from "zod";
 import axios from "axios";
 import toast from "react-hot-toast";
-import {useState} from "react";
-import {Billboard, Category} from "@prisma/client";
-import {Trash} from "lucide-react";
-import {useForm} from "react-hook-form";
-import {useParams, useRouter} from "next/navigation";
-import {zodResolver} from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { Billboard, Category } from "@prisma/client";
+import { Trash } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { useParams, useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
   Form,
@@ -18,11 +18,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {Heading} from "@/components/ui/heading";
-import {Button} from "@/components/ui/button";
-import {Separator} from "@/components/ui/separator";
-import {Input} from "@/components/ui/input";
-import {AlertModal} from "@/components/modals/alert-modal";
+import { Heading } from "@/components/ui/heading";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
+import { AlertModal } from "@/components/modals/alert-modal";
 import {
   Select,
   SelectContent,
@@ -47,7 +47,7 @@ interface CategoryFormProps {
 
 export const CategoryForm: React.FC<CategoryFormProps> = ({
   initialData,
-  billboards,
+  billboards
 }) => {
   const router = useRouter();
   const params = useParams();
@@ -117,40 +117,40 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
         loading={loading}
       />
       <div className="flex items-center justify-between">
-        <Heading title={title} description={description} />
+        <Heading
+          title={title}
+          description={description}
+        />
         {initialData && (
           <Button
             disabled={loading}
-            variant="destructive"
-            size="icon"
+            variant='destructive'
+            size='icon'
             onClick={() => {
-              setOpen(true);
+              setOpen(true)
             }}
           >
-            <Trash className="h-4 w-4" />
+            <Trash className="h-4 w-4"
+            />
           </Button>
         )}
       </div>
       <Separator />
       {/* // formik form */}
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-full"
-        >
-          <div className="grid grid-cols-3 gap-8">
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8 w-full'>
+
+          <div className='grid grid-cols-3 gap-8'>
             <FormField
               control={form.control}
-              name="name"
-              render={({field}) => (
+              name='name'
+              render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>
+                    Name
+                  </FormLabel>
                   <FormControl>
-                    <Input
-                      disabled={loading}
-                      placeholder="Category Name"
-                      {...field}
-                    />
+                    <Input disabled={loading} placeholder='Category Name' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -158,10 +158,12 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
             />
             <FormField
               control={form.control}
-              name="billboardId"
-              render={({field}) => (
+              name='billboardId'
+              render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Billboard</FormLabel>
+                  <FormLabel>
+                    Billboard
+                  </FormLabel>
                   <Select
                     disabled={loading}
                     onValueChange={field.onChange}
@@ -169,16 +171,20 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger >
                         <SelectValue
                           defaultValue={field.value}
-                          placeholder="Select a billboard"
+                          placeholder='Select a billboard'
+
                         />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
                       {billboards.map((billboard) => (
-                        <SelectItem key={billboard.id} value={billboard.id}>
+                        <SelectItem
+                          key={billboard.id}
+                          value={billboard.id}
+                        >
                           {billboard.label}
                         </SelectItem>
                       ))}
@@ -189,18 +195,12 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
               )}
             />
           </div>
-          <Button disabled={loading} className="ml-auto" type="submit">
+          <Button disabled={loading} className='ml-auto' type='submit'>
             {action}
           </Button>
         </form>
       </Form>
-      <QRCodeGenerator
-        text={
-          Array.isArray(params.categoryId)
-            ? params.categoryId[0].toString()
-            : params.categoryId.toString()
-        }
-      />
+      <QRCodeGenerator text={Array.isArray(params.categoryId) ? params.categoryId[0].toString() : params.categoryId.toString()} />
     </>
-  );
-};
+  )
+}

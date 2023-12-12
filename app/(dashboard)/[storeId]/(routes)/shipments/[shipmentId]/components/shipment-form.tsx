@@ -9,6 +9,8 @@ import { Trash } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useParams, useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
+import QRCodeGenerator from '@/components/ui/qr-code';
+
 
 
 import {
@@ -24,6 +26,14 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Input } from '@/components/ui/input';
 import { AlertModal } from '@/components/modals/alert-modal';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
 
 const formSchema = z.object({
     name: z.string().min(1),
@@ -249,10 +259,23 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
                                 </FormItem>
                             )}
                         />
+
+
+
+
                     </div>
                     <Button disabled={loading} className='ml-auto' type='submit'>
                         {action}
                     </Button>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>დაასკანერე QR</CardTitle>
+                            <CardDescription>ყველა შეკვეთას გააჩნია უნიკალური QR </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <QRCodeGenerator text={`${window.location.origin}/${params.storeId}/categories/${params.shipmentId}`} />
+                        </CardContent>
+                    </Card>
 
                 </form>
             </Form>

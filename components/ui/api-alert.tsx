@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge, BadgeProps } from "@/components/ui/badge";
-import { text } from "stream/consumers";
 import { Button } from "@/components/ui/button";
 
 interface apiAlertProps {
@@ -14,6 +13,7 @@ interface apiAlertProps {
     variant: "public" | "admin"
 }
 
+// this variant is coming from 
 const textMap: Record<apiAlertProps["variant"], string> = {
     public: "Public",
     admin: "Admin",

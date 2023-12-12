@@ -24,7 +24,6 @@ import { Button } from "@/components/ui/button";
 
 const formSchema = z.object({
     name: z.string().min(3).max(255),
-    // description: z.string().min(1).max(255),
 })
 
 export const StoreModal = () => {
@@ -40,10 +39,7 @@ export const StoreModal = () => {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            setLoading(true)
-            const response = await axios.post('/api/stores', values);
-            window.location.assign(`/${response.data.id}`)
-
+            window.location.assign(`/admindashboard`)
         } catch (error) {
             toast.error("Something Went Wrong")
         } finally {
@@ -54,8 +50,8 @@ export const StoreModal = () => {
 
     return (
         <Modal
-            title="create store"
-            description="create a store to sell your products"
+            title="მოგესალმებით"
+            description="გთხოვთ ჩაწერეთ თქვენი სახელი"
             isOpen={storeModal.isOpen}
             onClose={storeModal.onClose}
         >
@@ -69,7 +65,7 @@ export const StoreModal = () => {
                                         Name
                                     </FormLabel>
                                     <FormControl>
-                                        <Input disabled={loading} placeholder="e-commerce" {...field} />
+                                        <Input disabled={loading} placeholder="სახელი..." {...field} />
                                     </FormControl>
                                     <FormMessage />
 

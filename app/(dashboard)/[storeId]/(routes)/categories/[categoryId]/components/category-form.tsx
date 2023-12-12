@@ -41,13 +41,15 @@ const formSchema = z.object({
 type CategoryFormValues = z.infer<typeof formSchema>;
 
 interface CategoryFormProps {
-  initialData: Category | null;
-  billboards: Billboard[];
+    initialData: Category | null;
+    billboards: Billboard[];
+
 }
 
 export const CategoryForm: React.FC<CategoryFormProps> = ({
-  initialData,
-  billboards,
+    initialData,
+    billboards,
+
 }) => {
   const router = useRouter();
   const params = useParams();
@@ -108,99 +110,101 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
     }
   };
 
-  return (
-    <>
-      <AlertModal
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        onConfirm={onDelete}
-        loading={loading}
-      />
-      <div className="flex items-center justify-between">
-        <Heading title={title} description={description} />
-        {initialData && (
-          <Button
-            disabled={loading}
-            variant="destructive"
-            size="icon"
-            onClick={() => {
-              setOpen(true);
-            }}
-          >
-            <Trash className="h-4 w-4" />
-          </Button>
-        )}
-      </div>
-      <Separator />
-      {/* // formik form */}
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-full"
-        >
-          <div className="grid grid-cols-3 gap-8">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({field}) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input
-                      disabled={loading}
-                      placeholder="Category Name"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+    return (
+        <>
+            <AlertModal
+                isOpen={open}
+                onClose={() => setOpen(false)}
+                onConfirm={onDelete}
+                loading={loading}
             />
-            <FormField
-              control={form.control}
-              name="billboardId"
-              render={({field}) => (
-                <FormItem>
-                  <FormLabel>Billboard</FormLabel>
-                  <Select
-                    disabled={loading}
-                    onValueChange={field.onChange}
-                    value={field.value}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue
-                          defaultValue={field.value}
-                          placeholder="Select a billboard"
+            <div className="flex items-center justify-between">
+                <Heading
+                    title={title}
+                    description={description}
+                />
+                {initialData && (
+                    <Button
+                        disabled={loading}
+                        variant='destructive'
+                        size='icon'
+                        onClick={() => {
+                            setOpen(true)
+                        }}
+                    >
+                        <Trash className="h-4 w-4"
                         />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {billboards.map((billboard) => (
-                        <SelectItem key={billboard.id} value={billboard.id}>
-                          {billboard.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <Button disabled={loading} className="ml-auto" type="submit">
-            {action}
-          </Button>
-        </form>
-      </Form>
-      <QRCodeGenerator
-        text={
-          Array.isArray(params.categoryId)
-            ? params.categoryId[0].toString()
-            : params.categoryId.toString()
-        }
-      />
-    </>
-  );
-};
+                    </Button>
+                )}
+            </div>
+            <Separator />
+            {/* // formik form */}
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8 w-full'>
+
+                    <div className='grid grid-cols-3 gap-8'>
+                        <FormField
+                            control={form.control}
+                            name='name'
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>
+                                        Name
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input disabled={loading} placeholder='Category Name' {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name='billboardId'
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>
+                                        Billboard
+                                    </FormLabel>
+                                    <Select
+                                        disabled={loading}
+                                        onValueChange={field.onChange}
+                                        value={field.value}
+                                        defaultValue={field.value}
+                                    >
+                                        <FormControl>
+                                            <SelectTrigger >
+                                                <SelectValue
+                                                    defaultValue={field.value}
+                                                    placeholder='Select a billboard'
+
+                                                />
+                                            </SelectTrigger>
+                                        </FormControl>
+                                        <SelectContent>
+                                            {billboards.map((billboard) => (
+                                                <SelectItem
+                                                    key={billboard.id}
+                                                    value={billboard.id}
+                                                >
+                                                    {billboard.label}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+                    <Button disabled={loading} className='ml-auto' type='submit'>
+                        {action}
+                    </Button>
+                </form>
+            </Form>
+            <>
+                <QRCodeGenerator text={`${window.location.origin}/${params.storeId}/categories/${params.categoryId}`} />
+            </>
+        </>
+    )
+}

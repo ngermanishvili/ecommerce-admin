@@ -7,39 +7,40 @@ import { Button } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
 
-import { CategoryColumn, columns } from "./columns"
+import { ShipmentColumn, columns } from "./columns"
 import { DataTable } from "@/components/ui/date-table"
 import { ApiList } from "@/components/ui/api-list"
 
-interface CategoryClientProps {
-    data: CategoryColumn[];
-    variant: "public" | "admin"
+interface ShipmentClientlientProps {
+    data: ShipmentColumn[];
+
 }
 
-export const CategoryClient: React.FC<CategoryClientProps> = ({
-    data,
+export const ShipmentClientlient: React.FC<ShipmentClientlientProps> = ({
+    data
 }) => {
     const router = useRouter();
     const params = useParams();
-
 
     return (
         <>
             <div className="flex items-center justify-between">
                 <Heading
-                    title={`Categories(${data.length})`}
-                    description="manage your Categories"
+                    title={`Shipment (${data.length})`}
+                    description="manage your shipments"
                 />
-                <Button onClick={() => router.push(`/${params.storeId}/categories/new`)}>
+                <Button onClick={() => router.push(`/${params.storeId}/shipments/new`)}>
                     <Plus className="mr-2 h-4 w-4 " />
                     Add New
                 </Button>
             </div>
             <Separator />
             <DataTable searchKey="name" columns={columns} data={data} />
-            <Heading title="API" description="api calls for categories" />
+            <Heading title="API" description="api calls for shipments" />
             <Separator />
-            <ApiList entityName="categories" entityIdName="categoryId" />
+            <ApiList entityName="shipments" entityIdName="shipmentId" />
+
+
         </>
 
     )

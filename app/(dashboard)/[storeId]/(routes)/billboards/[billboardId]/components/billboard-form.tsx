@@ -58,7 +58,6 @@ export const BillBoardForm: React.FC<BillBoardFormProps> = ({
         defaultValues: initialData || {
             label: '',
             imageUrl: '',
-
         }
     })
 

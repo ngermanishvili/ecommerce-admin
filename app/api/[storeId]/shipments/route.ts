@@ -10,17 +10,36 @@ export async function POST(
         const { userId } = auth();
         const body = await req.json()
 
-        const { label, imageUrl } = body;
+        const { name, lastName, phoneNumber, address, city, brittle, price } = body;
+
+        if (!phoneNumber) {
+            return new NextResponse("Phone number is required", { status: 400 })
+        }
+        if (!address) {
+            return new NextResponse("Address is required", { status: 400 })
+        }
+
+        if (!city) {
+            return new NextResponse("City is required", { status: 400 })
+        }
+
+        if (!brittle) {
+            return new NextResponse("Brittle is required", { status: 400 })
+        }
+
+        if (!price) {
+            return new NextResponse("Price is required", { status: 400 })
+        }
 
         if (!userId) {
             return new NextResponse("Unautheticated", { status: 401 })
         }
 
-        if (!label) {
+        if (!name) {
             return new NextResponse("Label is required", { status: 400 })
         }
 
-        if (!imageUrl) {
+        if (!lastName) {
             return new NextResponse("Image URL is required", { status: 400 })
         }
 
@@ -28,18 +47,24 @@ export async function POST(
             return new NextResponse("Store ID is required", { status: 400 })
         }
 
-        const billboard = await prismadb.billboard.create({
+        const shipment = await prismadb.shipment.create({
             data: {
-                label,
-                imageUrl,
+
+                name,
+                lastName,
+                phoneNumber,
+                address,
+                city,
+                brittle,
+                price,
                 storeId: params.storeId
             }
         });
 
-        return NextResponse.json(billboard)
+        return NextResponse.json(shipment)
 
     } catch (error) {
-        console.log('[BILLBOARDS_POST]', error)
+        console.log('[SHIPMENT_POST]', error)
         return new NextResponse("Internal error BROJ", { status: 500 })
     }
 }
@@ -55,17 +80,17 @@ export async function GET(
         }
 
 
-        const billboards = await prismadb.billboard.findMany({
+        const shipment = await prismadb.shipment.findMany({
             where: {
                 storeId: params.storeId
 
             }
         });
 
-        return NextResponse.json(billboards)
+        return NextResponse.json(shipment)
 
     } catch (error) {
-        console.log('[BILLBOARDS_GET]', error)
+        console.log('[SHIPMENT_GET]', error)
         return new NextResponse("Internal error BROJ", { status: 500 })
     }
 }

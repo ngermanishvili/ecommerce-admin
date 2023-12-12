@@ -1,6 +1,4 @@
-// This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,20 +9,9 @@ datasource db {
   relationMode = "prisma"
 }
 
-model Store {
-  id         String      @id @default(uuid())
-  name       String
-  userId     String
-  billboards Billboard[] @relation("StoreToBillboard")
-  categories Category[]  @relation("StoreToCategory")
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
-}
-
 model Billboard {
   id         String     @id @default(uuid())
   storeId    String
-  store      Store      @relation("StoreToBillboard", fields: [storeId], references: [id])
   label      String
   imageUrl   String
   categories Category[]
@@ -35,15 +22,31 @@ model Billboard {
 }
 
 model Category {
-  id          String    @id @default(uuid())
-  storeId     String // Foreign Key to Store
-  store       Store     @relation("StoreToCategory", fields: [storeId], references: [id])
-  billboardId String // Foreign Key to Billboard
-  billboard   Billboard @relation(fields: [billboardId], references: [id])
-  name        String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id              String    @id @default(uuid())
+  storeId         String // Foreign Key to Store
+  billboardId     String // Foreign Key to Billboard
+  billboard       Billboard @relation(fields: [billboardId], references: [id])
+  name            String
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  markedByCourier Boolean   @default(false) // New field for the courier to mark true or false
 
   @@index([storeId])
   @@index([billboardId])
+}
+
+model Shipment {
+  id          String   @id @default(uuid())
+  storeId     String
+  name        String
+  lastName    String
+  phoneNumber String
+  address     String // 
+  city        String // 
+  brittle     String // 
+  price       String // 
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([storeId])
 }

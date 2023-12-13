@@ -27,7 +27,6 @@ const SetupPage = () => {
                     <BannerSection />
                     <SearchTrackingComponent />
                     <BlogPosts />
-                    <ChatPlugin />
                 </>
 
             </div >

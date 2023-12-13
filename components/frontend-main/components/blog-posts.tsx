@@ -6,28 +6,28 @@ export function BlogPosts(props: any) {
     const blogPostsData = [
         {
             id: 1,
-            imageSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/53d5fc932934b158a5d5fb59b1a253d100c80d70022c1450275aa45010cd2556?apiKey=51bfafa4352f47b3b624fa2aa0dc0ef4&width=1600&height=1200",
+            imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9mXUX4Me99eUqJOXzPyWLn-oSal71Wf6RfQ&usqp=CAU",
             alt: "Blog 1",
             title: "BLOG 1",
             date: "TEST, TEST 10.04.2021 17:23"
         },
         {
             id: 2,
-            imageSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/53d5fc932934b158a5d5fb59b1a253d100c80d70022c1450275aa45010cd2556?apiKey=51bfafa4352f47b3b624fa2aa0dc0ef4&width=1600&height=1200",
+            imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9mXUX4Me99eUqJOXzPyWLn-oSal71Wf6RfQ&usqp=CAU",
             alt: "Blog 2",
             title: "BLOG 2",
             date: "TEST, TEST 10.04.2021 17:23"
         },
         {
             id: 3,
-            imageSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/53d5fc932934b158a5d5fb59b1a253d100c80d70022c1450275aa45010cd2556?apiKey=51bfafa4352f47b3b624fa2aa0dc0ef4&width=1600&height=1200",
+            imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9mXUX4Me99eUqJOXzPyWLn-oSal71Wf6RfQ&usqp=CAU",
             alt: "Blog 2",
             title: "BLOG 2",
             date: "TEST, TEST 10.04.2021 17:23"
         },
         {
             id: 4,
-            imageSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/53d5fc932934b158a5d5fb59b1a253d100c80d70022c1450275aa45010cd2556?apiKey=51bfafa4352f47b3b624fa2aa0dc0ef4&width=1600&height=1200",
+            imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9mXUX4Me99eUqJOXzPyWLn-oSal71Wf6RfQ&usqp=CAU",
             alt: "Blog 2",
             title: "BLOG 2",
             date: "TEST, TEST 10.04.2021 17:23"
@@ -35,7 +35,7 @@ export function BlogPosts(props: any) {
 
         {
             id: 5,
-            imageSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/53d5fc932934b158a5d5fb59b1a253d100c80d70022c1450275aa45010cd2556?apiKey=51bfafa4352f47b3b624fa2aa0dc0ef4&width=1600&height=1200",
+            imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9mXUX4Me99eUqJOXzPyWLn-oSal71Wf6RfQ&usqp=CAU",
             alt: "Blog 2",
             title: "BLOG 2",
             date: "TEST, TEST 10.04.2021 17:23"

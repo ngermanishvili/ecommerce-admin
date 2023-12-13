@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from 'next/navigation';
+import { Button } from "antd";
 
 function SearchTrackingComponent(props: any) {
   const router = useRouter();
@@ -39,13 +40,16 @@ function SearchTrackingComponent(props: any) {
         <form onSubmit={handleSubmit}>
           <Input
             className="w-full text-stone-300 text-xl leading-8 bg-white pl-11 pr-16 py-5 rounded-xl mb-2"
-            placeholder="SEARCH YOUR ITEM BY ID"
+            placeholder="SEARCH BY ID"
             value={trackingId}
             onChange={(e) => setTrackingId(e.target.value)}
           />
-          <button type="submit" className="btn-primary">Search</button>
         </form>
+        <div className="bg-red-400 rounded-sm mt-4 mb-4">
+          <button type="submit" className="btn-primary text-black-400 uppercase text-2xl mr-4">Search</button>
+        </div>
       </div>
+
     </div>
   );
 }

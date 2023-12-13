@@ -21,7 +21,6 @@ export async function GET(
     } catch (error) {
         console.log('[BILLBOARD_GET]', error)
         return new NextResponse("Internal error", { status: 500 })
-
     }
 }
 

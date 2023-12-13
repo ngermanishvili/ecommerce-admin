@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
+
+import Script from 'next/script'
+
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { ModalProvider } from '@/providers/modal-provider'
 import { ToasterProvider } from '@/providers/toast-provider'
-import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,7 +27,6 @@ export default function RootLayout({
         {children}
         <div id="fb-root"></div>
         <div id="fb-customer-chat" className="fb-customerchat"></div>
-
         <Script id="fb-chat" strategy="lazyOnload">
           {`
               var chatbox = document.getElementById('fb-customer-chat');

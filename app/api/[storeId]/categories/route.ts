@@ -26,8 +26,6 @@ export async function POST(
             return new NextResponse("Store ID is required", { status: 400 })
         }
 
-
-
         const categories = await prismadb.category.create({
             data: {
                 markedByCourier,

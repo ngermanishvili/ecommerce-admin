@@ -10,8 +10,6 @@ import { useParams, useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import QRCodeGenerator from '@/components/ui/qr-code';
 
-
-
 import {
     Form,
     FormControl,
@@ -29,7 +27,6 @@ import {
     Card,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
@@ -46,9 +43,9 @@ const formSchema = z.object({
     lastName: z.string().min(1),
     city: z.string().min(1),
     address: z.string().min(1),
-    phoneNumber: z.string().min(1),
+    phoneNumber: z.string().min(5),
     price: z.string().min(1),
-    brittle: z.string().min(1),
+    brittle: z.boolean().default(false), // Add this field
     markedByCourier: z.boolean().default(false), // Add this field
 
 })
@@ -65,10 +62,8 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
 }) => {
     const router = useRouter();
     const params = useParams();
-
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
-
     const title = initialData ? "Edit Shipment" : "Create Shipment";
     const description = initialData ? "Edit a Shipment" : "Add a new Shipment";
     const toastMessage = initialData ? "Shipment updated." : "Shipment created";
@@ -83,8 +78,8 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
             address: '',
             phoneNumber: '',
             price: '',
-            brittle: '',
-            markedByCourier: false, // Use false as the default
+            brittle: false,
+            markedByCourier: false,
         }
     })
 
@@ -94,28 +89,25 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
             console.log('Submitted Data:', data);
 
             if (initialData) {
-                await axios.patch(`/api/${params.storeId}/shipments/${params.shipmentId}`, data)
+                await axios.patch(`/api/${params.storeId}/shipments/${params.shipmentId}`, data);
             } else {
-                await axios.post(`/api/${params.storeId}/shipments`, data)
-
+                await axios.post(`/api/${params.storeId}/shipments`, data);
             }
+
             router.refresh();
             router.push(`/${params.storeId}/shipments`);
-            toast.success(toastMessage)
+            toast.success(toastMessage);
         } catch (error) {
-            toast.error("Something went wrong.")
-
+            toast.error("Something went wrong.");
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
-    }
-
+    };
 
     const onDelete = async () => {
         try {
             setLoading(true)
             await axios.delete(`/api/${params.storeId}/shipments/${params.shipmentId}}`)
-
             router.refresh();
             router.push(`/${params.storeId}/shipments`);
             toast.success('Category deleted.')
@@ -157,6 +149,8 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
                 )}
             </div>
             <Separator />
+
+
             {/* // formik form */}
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8 w-full'>
@@ -171,6 +165,38 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
                                     </FormLabel>
                                     <FormControl>
                                         <Input disabled={loading} placeholder='სახელი' {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+
+                        <FormField
+                            control={form.control}
+                            name='brittle'
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>მსხვრევადი</FormLabel>
+                                    <FormControl>
+                                        <Select
+                                            value={field.value ? 'Yes' : 'No'}
+                                            onValueChange={(newValueBrittle) => {
+                                                console.log('New Value:', newValueBrittle); // Debug log
+                                                const isBrittle = newValueBrittle === 'Yes';
+                                                console.log('isBrittlee:', isBrittle); // Debug log
+                                                field.onChange(isBrittle);
+                                            }}
+                                        >
+                                            <SelectTrigger>
+                                                <SelectValue>{field.value ? 'Yes' : 'No'}</SelectValue>
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value='Yes'>Yes</SelectItem>
+                                                <SelectItem value='No'>No</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -207,12 +233,6 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
                                 </FormItem>
                             )}
                         />
-
-
-
-
-
-
                         <FormField
                             key={initialData?.id}
                             control={form.control}
@@ -229,36 +249,7 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
                                 </FormItem>
                             )}
                         />
-                        <FormField
-                            control={form.control}
-                            name='price'
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>
-                                        ფასი
-                                    </FormLabel>
-                                    <FormControl>
-                                        <Input disabled={loading} placeholder='ფასი' {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name='phoneNumber'
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>
-                                        ტელეფონის ნომერი
-                                    </FormLabel>
-                                    <FormControl>
-                                        <Input disabled={loading} placeholder='ტელეფონის ნომერი ' {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+
                         <FormField
                             control={form.control}
                             name='address'
@@ -289,22 +280,38 @@ export const ShipmentForm: React.FC<ShipmentFormProps> = ({
                                 </FormItem>
                             )}
                         />
+
                         <FormField
                             control={form.control}
-                            name='brittle'
+                            name='phoneNumber'
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>
-                                        მსხვრევადი
+                                        ტელეფონის ნომერი
                                     </FormLabel>
                                     <FormControl>
-                                        <Input disabled={loading} placeholder='..' {...field} />
+                                        <Input type='number' disabled={loading} placeholder='ტელეფონის ნომერი ' {...field} />
                                     </FormControl>
                                     <FormMessage />
-
                                 </FormItem>
                             )}
                         />
+                        <FormField
+                            control={form.control}
+                            name='price'
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>
+                                        ფასი
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input type='number' disabled={loading} placeholder='ფასი' {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
                     </div>
                     <Button disabled={loading} className='ml-auto' type='submit'>
                         {action}

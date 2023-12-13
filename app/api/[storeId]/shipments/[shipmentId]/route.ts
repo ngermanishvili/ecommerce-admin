@@ -37,9 +37,6 @@ export async function PATCH(
 
         const { name, lastName, phoneNumber, address, city, brittle, price, markedByCourier } = body;
 
-        if (!markedByCourier) {
-            return new NextResponse("You can't mark a shipment as delivered", { status: 400 })
-        }
 
         if (!phoneNumber) {
             return new NextResponse("phoneNumber is required", { status: 400 })
@@ -53,9 +50,7 @@ export async function PATCH(
             return new NextResponse("city is required", { status: 400 })
         }
 
-        if (!brittle) {
-            return new NextResponse("brittle is required", { status: 400 })
-        }
+
 
         if (!price) {
             return new NextResponse("price is required", { status: 400 })
@@ -91,7 +86,7 @@ export async function PATCH(
                 price,
                 name,
                 lastName,
-                markedByCourier,
+                markedByCourier // Include this field in the update operation
             }
         });
 

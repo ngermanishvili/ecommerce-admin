@@ -12,9 +12,7 @@ export async function POST(
 
         const { name, lastName, phoneNumber, address, city, brittle, price, markedByCourier } = body;
 
-        if (markedByCourier) {
-            return new NextResponse("You can't mark a shipment as delivered", { status: 400 })
-        }
+
 
         if (!phoneNumber) {
             return new NextResponse("Phone number is required", { status: 400 })
@@ -25,10 +23,6 @@ export async function POST(
 
         if (!city) {
             return new NextResponse("City is required", { status: 400 })
-        }
-
-        if (!brittle) {
-            return new NextResponse("Brittle is required", { status: 400 })
         }
 
         if (!price) {

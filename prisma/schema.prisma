@@ -43,7 +43,7 @@ model Shipment {
   phoneNumber     String
   address         String // 
   city            String // 
-  brittle         String
+  brittle         Boolean  @default(false) // New field for the courier to mark true or false
   price           String
   markedByCourier Boolean  @default(false) // New field for the courier to mark true or false
   createdAt       DateTime @default(now())

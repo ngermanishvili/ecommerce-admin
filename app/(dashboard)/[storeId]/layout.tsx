@@ -1,4 +1,3 @@
-import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 import prismadb from "@/lib/prismadb";
@@ -13,11 +12,11 @@ export default async function DashboardLayout({
     params: { storeId: string }
 }) {
 
-    const { userId } = auth();
+    // const { userId } = auth();
 
-    if (!userId) {
-        redirect('/sign-in')
-    }
+    // if (!userId) {
+    //     redirect('/sign-in')
+    // }
 
     return (
         <>

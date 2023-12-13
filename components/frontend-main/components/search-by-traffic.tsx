@@ -49,7 +49,6 @@ function SearchTrackingComponent(props: any) {
           <button type="submit" className="btn-primary text-black-400 uppercase text-2xl mr-4">Search</button>
         </div>
       </div>
-
     </div>
   );
 }

@@ -39,8 +39,6 @@ export const ShipmentClientlient: React.FC<ShipmentClientlientProps> = ({
             <Heading title="API" description="api calls for shipments" />
             <Separator />
             <ApiList entityName="shipments" entityIdName="shipmentId" />
-
-
         </>
 
     )

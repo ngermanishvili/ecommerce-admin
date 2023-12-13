@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server"
-import { auth } from "@clerk/nextjs";
 
 import prismadb from "@/lib/prismadb";
 
@@ -31,7 +30,6 @@ export async function PATCH(
     { params }: { params: { storeId: string, shipmentId: string } }
 ) {
     try {
-        const { userId } = auth();
 
         const body = await req.json();
 
@@ -54,9 +52,6 @@ export async function PATCH(
             return new NextResponse("price is required", { status: 400 })
         }
 
-        if (!userId) {
-            return new NextResponse("Unauthenticated", { status: 401 })
-        }
 
         if (!name) {
             return new NextResponse("Label is required", { status: 400 })
@@ -103,11 +98,8 @@ export async function DELETE(
     { params }: { params: { storeId: string, shipmentId: string } }
 ) {
     try {
-        const { userId } = auth();
 
-        if (!userId) {
-            return new NextResponse("Unauthenticated", { status: 401 })
-        }
+
 
         if (!params.shipmentId) {
             return new NextResponse("billboardId ID is required", { status: 400 })

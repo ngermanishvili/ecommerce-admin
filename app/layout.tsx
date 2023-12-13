@@ -5,8 +5,8 @@ import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
 import { ModalProvider } from '@/providers/modal-provider'
 import { ToasterProvider } from '@/providers/toast-provider'
-import ChatPlugin from '@/components/frontend-main/components/facebook-chat'
 import Script from 'next/script'
+import FacebookChatSDK from '@/components/frontend-main/components/facebook-chat'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,7 +27,8 @@ export default function RootLayout({
           <ToasterProvider />
           <ModalProvider />
           {children}
-          <ChatPlugin />
+          <div id="fb-customer-chat" className="fb-customerchat" />
+          <FacebookChatSDK />
         </body>
       </html>
     </ClerkProvider>

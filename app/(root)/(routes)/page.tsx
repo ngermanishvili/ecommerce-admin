@@ -3,7 +3,6 @@ import { Header } from "@/components/frontend-main/components/navbar"
 import BannerSection from "@/components/frontend-main/components/banner";
 import SearchTrackingComponent from "@/components/frontend-main/components/search-by-traffic";
 import { BlogPosts } from "@/components/frontend-main/components/blog-posts";
-import ChatPlugin from "@/components/frontend-main/components/facebook-chat";
 
 // import { useStoreModal } from "@/hooks/use-store-modal";
 

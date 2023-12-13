@@ -58,7 +58,7 @@ export const StoreModal = () => {
             <div>
                 <div className="space-y-4 py-2 pb-4">
                     <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)}>
+                        <div onSubmit={form.handleSubmit(onSubmit)}>
                             <FormField control={form.control} name="name" render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>
@@ -86,7 +86,7 @@ export const StoreModal = () => {
                                     Continiue
                                 </Button>
                             </div>
-                        </form>
+                        </div>
                     </Form>
                 </div>
             </div>

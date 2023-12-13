@@ -24,17 +24,17 @@ export async function PATCH(
             return new NextResponse("Store ID is required", { status: 400 })
         }
 
-        const store = await prismadb.store.updateMany({
-            where: {
-                id: params.storeId,
-                userId,
-            },
-            data: {
-                name,
-            }
-        });
+        // const store = await prismadb.store.updateMany({
+        //     where: {
+        //         id: params.storeId,
+        //         userId,
+        //     },
+        //     data: {
+        //         name,
+        //     }
+        // });
 
-        return NextResponse.json(store)
+        // return NextResponse.json(store)
 
     } catch (error) {
         console.log('[STORE_PATCH]', error)
@@ -59,14 +59,14 @@ export async function DELETE(
             return new NextResponse("Store ID is required", { status: 400 })
         }
 
-        const store = await prismadb.store.deleteMany({
-            where: {
-                id: params.storeId,
-                userId,
-            },
-        });
+        // const store = await prismadb.store.deleteMany({
+        //     where: {
+        //         id: params.storeId,
+        //         userId,
+        //     },
+        // });
 
-        return NextResponse.json(store)
+        // return NextResponse.json(store)
 
     } catch (error) {
         console.log('[STORE_DELETE]', error)

@@ -50,8 +50,6 @@ export async function PATCH(
             return new NextResponse("city is required", { status: 400 })
         }
 
-
-
         if (!price) {
             return new NextResponse("price is required", { status: 400 })
         }

@@ -39,7 +39,7 @@ function SearchTrackingComponent(props: any) {
         <form onSubmit={handleSubmit}>
           <Input
             className="w-full text-stone-300 text-xl leading-8 bg-white pl-11 pr-16 py-5 rounded-xl mb-2"
-            placeholder="SEARCH TRACKING"
+            placeholder="SEARCH YOUR ITEM BY ID"
             value={trackingId}
             onChange={(e) => setTrackingId(e.target.value)}
           />

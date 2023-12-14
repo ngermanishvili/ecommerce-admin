@@ -6,12 +6,16 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { ModalProvider } from '@/providers/modal-provider'
 import { ToasterProvider } from '@/providers/toast-provider'
+import { siteConfig } from '@/config/site'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Admin Dashboard',
-  description: 'Admin Dashboard',
+  title: {
+    default: siteConfig.title,
+    template: `% | ${siteConfig.title}`,
+  },
+  description: siteConfig.description,
 }
 
 export default function RootLayout({

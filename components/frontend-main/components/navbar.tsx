@@ -22,6 +22,9 @@ export function Header(props: any) {
                         <Button>
                             <Link className="text-red-400" href="/main">AUTHORIZATION</Link>
                         </Button>
+                        <Button>
+                            <Link className="text-red-400" href="/">LOGIN</Link>
+                        </Button>
                     </div>
                     <div className="text-zinc-800 text-base font-medium self-center my-auto">GE</div>
                 </div>
